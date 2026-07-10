@@ -7,23 +7,40 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
     body { background: #f5f5f5; }
-    .navbar { background: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .logo { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 20px; color: #2E7D32; }
-    .logo-circle { width: 40px; height: 40px; background: linear-gradient(135deg, #66BB6A, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .hero { background: linear-gradient(90deg, rgba(46,125,50,0.95), rgba(255,193,7,0.8)), url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80') center/cover; color: white; padding: 60px 5%; text-align: center; }
-    .salam { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
-    .waktu { font-size: 18px; opacity: 0.9; margin-bottom: 30px; }
-    .doa-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; max-width: 800px; margin: 0 auto 30px; text-align: left; }
-    .doa-arab { font-size: 24px; line-height: 2; text-align: right; margin-bottom: 15px; font-family: 'Traditional Arabic', serif; }
-    .doa-arti { font-size: 16px; margin-bottom: 10px; }
-    .doa-en { font-size: 14px; opacity: 0.8; font-style: italic; }
-    .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-    .btn { padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; }
-    .btn-primary { background: #FFC107; color: #333; }
-    .btn-outline { border: 2px solid white; color: white; }
-    .video-wrap { max-width: 800px; margin: 40px auto; }
-    .video-wrap iframe { width: 100%; height: 450px; border-radius: 15px; }
-    @media (max-width: 768px) { .hero h1 { font-size: 32px; } }
+   .navbar { background: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+   .logo { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 20px; color: #2E7D32; }
+   .logo-circle { width: 40px; height: 40px; background: linear-gradient(135deg, #66BB6A, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+   .hero { background: linear-gradient(90deg, rgba(46,125,50,0.95), rgba(255,193,7,0.8)), url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80') center/cover; color: white; padding: 60px 5%; text-align: center; }
+   .salam { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
+   .waktu { font-size: 18px; opacity: 0.9; margin-bottom: 30px; }
+   .doa-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; max-width: 800px; margin: 0 auto 30px; text-align: left; }
+   .doa-arab { font-size: 24px; line-height: 2; text-align: right; margin-bottom: 15px; font-family: 'Traditional Arabic', serif; }
+   .doa-arti { font-size: 16px; margin-bottom: 10px; }
+   .doa-en { font-size: 14px; opacity: 0.8; font-style: italic; }
+   .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+   .btn { padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; }
+   .btn-primary { background: #FFC107; color: #333; }
+   .btn-outline { border: 2px solid white; color: white; }
+   .video-wrap { max-width: 800px; margin: 40px auto; }
+   .video-wrap iframe { width: 100%; height: 450px; border-radius: 15px; }
+    
+   .sapa-section { padding: 60px 5%; background: white; }
+   .sapa-title { text-align: center; font-size: 32px; color: #2E7D32; margin-bottom: 40px; font-weight: bold; }
+   .sapa-container { max-width: 1100px; margin: 0 auto; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+   .sapa-img { flex: 1; min-width: 300px; }
+   .sapa-img img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+   .sapa-text { flex: 1; min-width: 300px; }
+   .sapa-bubble { background: #E8F5E9; padding: 25px; border-radius: 20px 20px 20px 5px; margin-bottom: 20px; position: relative; }
+   .sapa-bubble:before { content: ''; position: absolute; left: -15px; bottom: 20px; border: 15px solid transparent; border-right-color: #E8F5E9; }
+   .typing { font-size: 18px; line-height: 1.8; color: #333; }
+   .highlight { background: #FFC107; padding: 2px 6px; border-radius: 5px; font-weight: bold; }
+   .btn-borong { background: #25D366; color: white; padding: 16px 32px; font-size: 18px; margin-top: 20px; display: inline-block; }
+    
+   .galeri { padding: 60px 5%; background: #f5f5f5; }
+   .galeri-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+   .galeri-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    
+    @media (max-width: 768px) {.hero h1 { font-size: 32px; }.sapa-container { flex-direction: column; }.video-wrap iframe { height: 250px; } }
   </style>
 </head>
 <body>
@@ -38,14 +55,8 @@
     <div class="salam" id="salam">Assalamualaikum</div>
     <div class="waktu" id="waktu"></div>
 
-    <div class="doa-card">
-      <div class="doa-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
-      <div class="doa-arti"><strong>Artinya:</strong> Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang</div>
-      <div class="doa-en"><strong>In English:</strong> In the name of Allah, the Most Gracious, the Most Merciful</div>
-      <br>
-      <div class="doa-arab">اللَّهُمَّ بَارِكْ لَنَا فِي رِزْقِنَا وَزَرْعِنَا</div>
-      <div class="doa-arti"><strong>Artinya:</strong> Ya Allah, berkahilah rezeki dan tanaman kami</div>
-      <div class="doa-en"><strong>In English:</strong> O Allah, bless our sustenance and our crops</div>
+    <div class="doa-card" id="doa-container">
+      <!-- Doa otomatis muncul disini tiap hari -->
     </div>
 
     <div class="btn-group">
@@ -58,7 +69,82 @@
     </div>
   </section>
 
+  <section class="sapa-section" id="sapa">
+    <h2 class="sapa-title">Disapa Langsung Sama Mbak TaBurMas 🌾</h2>
+    <div class="sapa-container">
+      <div class="sapa-img">
+        <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?q=80&w=800" alt="Mbak TaBurMas">
+      </div>
+      <div class="sapa-text">
+        <div class="sapa-bubble">
+          <div class="typing" id="typing-text"></div>
+        </div>
+        <a href="https://wa.me/6281393316862?text=Halo%20Mbak,%20aku%20mau%20borong%20TaBurMas%2013%20Bacteri" target="_blank" class="btn btn-borong">🛒 Borong Sekarang di WA</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="galeri">
+    <h2 class="sapa-title">Testimoni & Produk TaBurMas</h2>
+    <div class="galeri-grid">
+      <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=600" alt="Botol TaburMas">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=600" alt="Kardus TaburMas">
+      <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600" alt="Tanaman Subur">
+      <img src="https://images.unsplash.com/photo-1464226184884-fa280b87b595?q=80&w=600" alt="Hasil Panen">
+    </div>
+  </section>
+
+  <a href="https://wa.me/6281393316862?text=Assalamualaikum%20TaBurMas" target="_blank" style="position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:15px 20px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2); z-index:999;">Chat WA</a>
+
   <script>
+    const doaHarian = [
+      { // Minggu
+        arab: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً",
+        arti: "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat",
+        en: "Our Lord, give us good in this world and good in the hereafter"
+      },
+      { // Senin
+        arab: "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا",
+        arti: "Ya Allah, aku mohon ilmu yang bermanfaat dan rezeki yang baik",
+        en: "O Allah, I ask You for beneficial knowledge and good provision"
+      },
+      { // Selasa
+        arab: "اللَّهُمَّ بَارِكْ لَنَا فِي رِزْقِنَا وَزَرْعِنَا",
+        arti: "Ya Allah, berkahilah rezeki dan tanaman kami",
+        en: "O Allah, bless our sustenance and our crops"
+      },
+      { // Rabu
+        arab: "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي",
+        arti: "Ya Tuhanku, lapangkanlah dadaku dan mudahkanlah urusanku",
+        en: "My Lord, expand my chest and ease my task for me"
+      },
+      { // Kamis
+        arab: "اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ",
+        arti: "Ya Allah, cukupkanlah aku dengan yang halal dari-Mu",
+        en: "O Allah, suffice me with Your lawful against Your prohibited"
+      },
+      { // Jumat
+        arab: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+        arti: "Ya Allah, limpahkan sholawat kepada Nabi Muhammad",
+        en: "O Allah, send blessings upon Muhammad and his family"
+      },
+      { // Sabtu
+        arab: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم",
+        arti: "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang",
+        en: "In the name of Allah, the Most Gracious, the Most Merciful"
+      }
+    ];
+
+    function updateDoa() {
+      const hari = new Date().getDay();
+      const doa = doaHarian[hari];
+      document.getElementById('doa-container').innerHTML = `
+        <div class="doa-arab">${doa.arab}</div>
+        <div class="doa-arti"><strong>Artinya:</strong> ${doa.arti}</div>
+        <div class="doa-en"><strong>In English:</strong> ${doa.en}</div>
+      `;
+    }
+    
     function updateSalam() {
       const jam = new Date().getHours();
       let waktu = "";
@@ -69,9 +155,24 @@
       document.getElementById('salam').innerText = "Assalamualaikum, " + waktu;
       document.getElementById('waktu').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     }
+    
+    const teksSapa = `Halooo TaBurMas, Assalamualaikum yang lagi buka web TaBurMas... Assalamualaikum! Aku baru borong pupuk TaBurMas yang kaya <span class="highlight">13 Bacteri</span> dan bacterinya sudah lengkap looo untuk semua tanaman. Pasti tanah & tanamanmu bagus dan hasil melimpah. Barokallah ya, cepat sugih pasti karena hasil melimpah. Cepat belanja yaaaaaaaaaaaa! Wassalamualaikum`;
+    let i = 0;
+    function ketik() {
+      if (i < teksSapa.length) {
+        document.getElementById('typing-text').innerHTML = teksSapa.substring(0, i+1);
+        i++;
+        setTimeout(ketik, 30);
+      }
+    }
+    
+    const observer = new IntersectionObserver((entries) => {
+      if(entries[0].isIntersecting) { ketik(); observer.disconnect(); }
+    });
+    
+    updateDoa();
     updateSalam();
+    observer.observe(document.querySelector('.sapa-section'));
   </script>
-
-  <a href="https://wa.me/6281393316862?text=Assalamualaikum%20TaBurMas" target="_blank" style="position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:15px 20px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2); z-index:999;">Chat WA</a>
 </body>
 </html>
