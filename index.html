@@ -1,35 +1,77 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaBurMas - Tabungan Qurban Masyarakat</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f0f8ff; text-align: center; }
-        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { color: #2c5aa0; margin-bottom: 10px; font-size: 32px; }
-        h2 { color: #555; margin-top: 0; font-weight: normal; }
-        .btn { background: #28a745; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; width: 100%; margin-top: 20px; }
-        .info { background: #e7f3ff; padding: 15px; border-radius: 5px; margin: 20px 0; text-align: left; }
-        .footer { margin-top: 30px; color: #666; font-size: 14px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI TaBurMas - Munajat Untuk Indonesia</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body { background: #f5f5f5; }
+    .navbar { background: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 20px; color: #2E7D32; }
+    .logo-circle { width: 40px; height: 40px; background: linear-gradient(135deg, #66BB6A, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .hero { background: linear-gradient(90deg, rgba(46,125,50,0.95), rgba(255,193,7,0.8)), url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80') center/cover; color: white; padding: 60px 5%; text-align: center; }
+    .salam { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
+    .waktu { font-size: 18px; opacity: 0.9; margin-bottom: 30px; }
+    .doa-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; max-width: 800px; margin: 0 auto 30px; text-align: left; }
+    .doa-arab { font-size: 24px; line-height: 2; text-align: right; margin-bottom: 15px; font-family: 'Traditional Arabic', serif; }
+    .doa-arti { font-size: 16px; margin-bottom: 10px; }
+    .doa-en { font-size: 14px; opacity: 0.8; font-style: italic; }
+    .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; }
+    .btn-primary { background: #FFC107; color: #333; }
+    .btn-outline { border: 2px solid white; color: white; }
+    .video-wrap { max-width: 800px; margin: 40px auto; }
+    .video-wrap iframe { width: 100%; height: 450px; border-radius: 15px; }
+    @media (max-width: 768px) { .hero h1 { font-size: 32px; } }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🐄 TaBurMas 🐐</h1>
-        <h2>Tabungan Qurban Masyarakat</h2>
-        <div class="info">
-            <p><strong>Solusi Mudah Berqurban Setiap Tahun</strong></p>
-            <p>✅ Mulai nabung dari Rp 10.000/hari</p>
-            <p>✅ Aman, Transparan, Amanah</p>
-            <p>✅ Wilayah Tersono, Batang & Sekitarnya</p>
-        </div>
-        <button class="btn" onclick="alert('Terima kasih! Tim TaBurMas akan segera hubungi Anda.')">Daftar Sekarang</button>
-        <div class="footer">
-            <p><strong>Hubungi Kami:</strong><br>
-            WA: 081393316862<br>
-            Limpung, Batang, Jawa Tengah</p>
-        </div>
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-circle">🌱</div>
+      <div>AI TaBurMas<br><small style="font-size:12px; font-weight:normal; color:#666;">Munajat Untuk Indonesia</small></div>
     </div>
+  </nav>
+
+  <section class="hero">
+    <div class="salam" id="salam">Assalamualaikum</div>
+    <div class="waktu" id="waktu"></div>
+
+    <div class="doa-card">
+      <div class="doa-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+      <div class="doa-arti"><strong>Artinya:</strong> Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang</div>
+      <div class="doa-en"><strong>In English:</strong> In the name of Allah, the Most Gracious, the Most Merciful</div>
+      <br>
+      <div class="doa-arab">اللَّهُمَّ بَارِكْ لَنَا فِي رِزْقِنَا وَزَرْعِنَا</div>
+      <div class="doa-arti"><strong>Artinya:</strong> Ya Allah, berkahilah rezeki dan tanaman kami</div>
+      <div class="doa-en"><strong>In English:</strong> O Allah, bless our sustenance and our crops</div>
+    </div>
+
+    <div class="btn-group">
+      <a href="https://wa.me/6281393316862?text=Assalamualaikum%20TaBurMas" target="_blank" class="btn btn-primary">💬 Sapa Kami di WhatsApp</a>
+      <a href="#sholawat" class="btn btn-outline">🎧 Dengar Sholawat</a>
+    </div>
+
+    <div class="video-wrap" id="sholawat">
+      <iframe src="https://www.youtube.com/embed/zXmkU-G9vK0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <script>
+    function updateSalam() {
+      const jam = new Date().getHours();
+      let waktu = "";
+      if (jam >= 4 && jam < 10) { waktu = "Selamat Pagi"; }
+      else if (jam >= 10 && jam < 15) { waktu = "Selamat Siang"; }
+      else if (jam >= 15 && jam < 18) { waktu = "Selamat Sore"; }
+      else { waktu = "Selamat Malam"; }
+      document.getElementById('salam').innerText = "Assalamualaikum, " + waktu;
+      document.getElementById('waktu').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    updateSalam();
+  </script>
+
+  <a href="https://wa.me/6281393316862?text=Assalamualaikum%20TaBurMas" target="_blank" style="position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:15px 20px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2); z-index:999;">Chat WA</a>
 </body>
 </html>
