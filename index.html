@@ -1,330 +1,90 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI TaBurMas - Munajat Untuk Indonesia</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    body { background: #f5f5f5; }
-   .navbar { background: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-   .logo { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 20px; color: #2E7D32; }
-   .logo-circle { width: 40px; height: 40px; background: linear-gradient(135deg, #66BB6A, #2E7D32); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-   .hero { background: linear-gradient(90deg, rgba(46,125,50,0.95), rgba(255,193,7,0.8)), url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80') center/cover; color: white; padding: 60px 5%; text-align: center; }
-   .salam { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
-   .waktu { font-size: 18px; opacity: 0.9; margin-bottom: 30px; }
-   .doa-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; max-width: 800px; margin: 0 auto 30px; text-align: left; }
-   .doa-arab { font-size: 24px; line-height: 2; text-align: right; margin-bottom: 15px; font-family: 'Traditional Arabic', serif; }
-   .doa-arti { font-size: 16px; margin-bottom: 10px; }
-   .doa-en { font-size: 14px; opacity: 0.8; font-style: italic; }
-   .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-   .btn { padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; }
-   .btn-primary { background: #FFC107; color: #333; }
-   .btn-outline { border: 2px solid white; color: white; }
-   .video-wrap { max-width: 800px; margin: 40px auto; }
-   .video-wrap iframe { width: 100%; height: 450px; border-radius: 15px; }
-    
-   .sapa-section { padding: 60px 5%; background: white; }
-   .sapa-title { text-align: center; font-size: 32px; color: #2E7D32; margin-bottom: 40px; font-weight: bold; }
-   .sapa-container { max-width: 1100px; margin: 0 auto; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
-   .sapa-img { flex: 1; min-width: 300px; }
-   .sapa-img img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-   .sapa-text { flex: 1; min-width: 300px; }
-   .sapa-bubble { background: #E8F5E9; padding: 25px; border-radius: 20px 20px 20px 5px; margin-bottom: 20px; position: relative; }
-   .sapa-bubble:before { content: ''; position: absolute; left: -15px; bottom: 20px; border: 15px solid transparent; border-right-color: #E8F5E9; }
-   .typing { font-size: 18px; line-height: 1.8; color: #333; }
-   .highlight { background: #FFC107; padding: 2px 6px; border-radius: 5px; font-weight: bold; }
-   .btn-borong { background: #25D366; color: white; padding: 16px 32px; font-size: 18px; margin-top: 20px; display: inline-block; }
-    
-   .galeri { padding: 60px 5%; background: #f5f5f5; }
-   .galeri-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
-   .galeri-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-    
-    @media (max-width: 768px) {.hero h1 { font-size: 32px; }.sapa-container { flex-direction: column; }.video-wrap iframe { height: 250px; } }
-  </style>
-</head>
-<body>
-  <nav class="navbar">
-    <div class="logo">
-      <div class="logo-circle">🌱</div>
-      <div>AI TaBurMas<br><small style="font-size:12px; font-weight:normal; color:#666;">Munajat Untuk Indonesia</small></div>
-    </div>
-  </nav>
-
-  <section class="hero">
-    <div class="salam" id="salam">Assalamualaikum</div>
-    <div class="waktu" id="waktu"></div>
-
-    <div class="doa-card" id="doa-container">
-      <!-- Doa otomatis muncul disini tiap hari -->
-    </div>
-
-    <div class="btn-group">
-      <a href="https://wa.me/6281393316862?text=Assalamualaikum%20TaBurMas" target="_blank" class="btn btn-primary">💬 Sapa Kami di WhatsApp</a>
-      <a href="#sholawat" class="btn btn-outline">🎧 Dengar Sholawat</a>
-    </div>
-
-    <div class="video-wrap" id="sholawat">
-      <iframe src="https://www.youtube.com/embed/zXmkU-G9vK0" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <section class="sapa-section" id="sapa">
-    <h2 class="sapa-title">Disapa Langsung Sama Mbak TaBurMas 🌾</h2>
-    <div class="sapa-container">
-      <div class="sapa-img">
-        <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?q=80&w=800" alt="Mbak TaBurMas">
-      </div>
-      <div class="sapa-text">
-        <div class="sapa-bubble">
-          <div class="typing" id="typing-text"></div>
-        </div>
-        <a href="https://wa.me/6281393316862?text=Halo%20Mbak,%20aku%20mau%20borong%20TaBurMas%2013%20Bacteri" target="_blank" class="btn btn-borong">🛒 Borong Sekarang di WA</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="galeri">
-    <h2 class="sapa-title">Testimoni & Produk TaBurMas</h2>
-    <div class="galeri-grid">
-      <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=600" alt="Botol TaburMas">
-      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=600" alt="Kardus TaburMas">
-      <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=600" alt="Tanaman Subur">
-      <img src="https://images.unsplash.com/photo-1464226184884-fa280b87b595?q=80&w=600" alt="Hasil Panen">
-    </div>
-  </section>
-
-  <a href="https://wa.me/6281393316862?text=Assalamualaikum%20TaBurMas" target="_blank" style="position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:15px 20px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2); z-index:999;">Chat WA</a>
-
-  <script>
-    const doaHarian = [
-      { // Minggu
-        arab: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً",
-        arti: "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat",
-        en: "Our Lord, give us good in this world and good in the hereafter"
-      },
-      { // Senin
-        arab: "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا",
-        arti: "Ya Allah, aku mohon ilmu yang bermanfaat dan rezeki yang baik",
-        en: "O Allah, I ask You for beneficial knowledge and good provision"
-      },
-      { // Selasa
-        arab: "اللَّهُمَّ بَارِكْ لَنَا فِي رِزْقِنَا وَزَرْعِنَا",
-        arti: "Ya Allah, berkahilah rezeki dan tanaman kami",
-        en: "O Allah, bless our sustenance and our crops"
-      },
-      { // Rabu
-        arab: "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي",
-        arti: "Ya Tuhanku, lapangkanlah dadaku dan mudahkanlah urusanku",
-        en: "My Lord, expand my chest and ease my task for me"
-      },
-      { // Kamis
-        arab: "اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ",
-        arti: "Ya Allah, cukupkanlah aku dengan yang halal dari-Mu",
-        en: "O Allah, suffice me with Your lawful against Your prohibited"
-      },
-      { // Jumat
-        arab: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
-        arti: "Ya Allah, limpahkan sholawat kepada Nabi Muhammad",
-        en: "O Allah, send blessings upon Muhammad and his family"
-      },
-      { // Sabtu
-        arab: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم",
-        arti: "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang",
-        en: "In the name of Allah, the Most Gracious, the Most Merciful"
-      }
-    ];
-
-    function updateDoa() {
-      const hari = new Date().getDay();
-      const doa = doaHarian[hari];
-      document.getElementById('doa-container').innerHTML = `
-        <div class="doa-arab">${doa.arab}</div>
-        <div class="doa-arti"><strong>Artinya:</strong> ${doa.arti}</div>
-        <div class="doa-en"><strong>In English:</strong> ${doa.en}</div>
-      `;
-    }
-    
-    function updateSalam() {
-      const jam = new Date().getHours();
-      let waktu = "";
-      if (jam >= 4 && jam < 10) { waktu = "Selamat Pagi"; }
-      else if (jam >= 10 && jam < 15) { waktu = "Selamat Siang"; }
-      else if (jam >= 15 && jam < 18) { waktu = "Selamat Sore"; }
-      else { waktu = "Selamat Malam"; }
-      document.getElementById('salam').innerText = "Assalamualaikum, " + waktu;
-      document.getElementById('waktu').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    }
-    
-    const teksSapa = `Halooo TaBurMas, Assalamualaikum yang lagi buka web TaBurMas... Assalamualaikum! Aku baru borong pupuk TaBurMas yang kaya <span class="highlight">13 Bacteri</span> dan bacterinya sudah lengkap looo untuk semua tanaman. Pasti tanah & tanamanmu bagus dan hasil melimpah. Barokallah ya, cepat sugih pasti karena hasil melimpah. Cepat belanja yaaaaaaaaaaaa! Wassalamualaikum`;
-    let i = 0;
-    function ketik() {
-      if (i < teksSapa.length) {
-        document.getElementById('typing-text').innerHTML = teksSapa.substring(0, i+1);
-        i++;
-        setTimeout(ketik, 30);
-      }
-    }
-    
-    const observer = new IntersectionObserver((entries) => {
-      if(entries[0].isIntersecting) { ketik(); observer.disconnect(); }
-    });
-    
-    updateDoa();
-    updateSalam();
-    observer.observe(document.querySelector('.sapa-section'));
-  </script><!-- ===== PASTE DARI SINI, DI ATAS </body> ===== -->
-<section id="galeri-taburmas" class="w-full py-12 md:py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10 md:mb-16">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-green-900 mb-4">
+<!-- ===== GALERI FINAL: KECIL + RAPAT + TAJAM ===== -->
+<section id="galeri-taburmas" class="w-full py-8 md:py-12 bg-gradient-to-b from-white to-green-50">
+  <div class="max-w-6xl mx-auto px-3 sm:px-6">
+    <div class="text-center mb-6 md:mb-10">
+      <h2 class="text-2xl md:text-4xl font-extrabold text-green-900 mb-2">
         TaBurMas Untuk Semua Komoditas Indonesia
       </h2>
-      <p class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+      <p class="text-gray-600 text-sm md:text-base max-w-2xl mx-auto">
         13 Bacteri pilihan bekerja di sawah, kebun, ladang — dari Sabang sampai Merauke
       </p>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-      <div class="sm:col-span-2 lg:col-span-2 group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/1%20CEWEK%20DI%20TENGAH%20SAWATAH%20TANAMAN%20PADI.webp" alt="Tim TaBurMas di Sawah Tersono" class="w-full h-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4 md:p-6">
-          <h3 class="text-white text-xl md:text-2xl font-bold mb-1">Tim TaBurMas Tersono</h3>
-          <p class="text-green-200 text-sm md:text-base">Langsung dari kebun untuk petani Indonesia</p>
+
+    <!-- GRID RAPAT: HP=3 kolom, Tablet=4 kolom, Desktop=6 kolom -->
+    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-1.5 md:gap-2">
+      
+      <!-- 1. MBAK SAPA PADI - UKURAN 2x2 -->
+      <div class="col-span-2 row-span-2 group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="/MENYAPA%20TANAMAN%20PADI.webp" alt="Tim TaBurMas Tersono" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-0 left-0 p-2 md:p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+          <p class="text-white text-xs md:text-sm font-bold">Tim TaBurMas</p>
         </div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/PEPAYA.webp" alt="TaBurMas untuk Pepaya" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Pepaya</h3></div>
+
+      <!-- 2. PEPAYA -->
+      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="/PEPAYA.webp" alt="Pepaya" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text- md:text-xs font-bold">Pepaya</p></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/CABAI.webp" alt="TaBurMas untuk Cabai" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Cabai</h3></div>
+
+      <!-- 3. CABAI -->
+      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="/TANAMAN%20CABE.webp" alt="Cabai" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text- md:text-xs font-bold">Cabai</p></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/TANAMAN%20JAGUNG.webp" alt="TaBurMas untuk Jagung" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Jagung</h3></div>
+
+      <!-- 4. JAGUNG -->
+      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="/TANAMAN%20JAGUNG.webp" alt="Jagung" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text- md:text-xs font-bold">Jagung</p></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/KOPI.webp" alt="TaBurMas untuk Kopi" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Kopi</h3></div>
+
+      <!-- 5. PISANG -->
+      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="/PISANG.webp" alt="Pisang" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text- md:text-xs font-bold">Pisang</p></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/COKLAT.webp" alt="TaBurMas untuk Kakao" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Kakao</h3></div>
+
+      <!-- 6. MENTIMUN -->
+      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="/MENTIMUN.webp" alt="Mentimun" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text- md:text-xs font-bold">Mentimun</p></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/KELAPASAWIT.webp" alt="TaBurMas untuk Sawit" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Kelapa Sawit</h3></div>
+
+      <!-- 7. TEBU -->
+      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="/TEBU.webp" alt="Tebu" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text- md:text-xs font-bold">Tebu</p></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/TOMAT.webp" alt="TaBurMas untuk Tomat" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Tomat</h3></div>
+
+      <!-- 8. MELATI -->
+      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="/MELATI.webp" alt="Melati" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text- md:text-xs font-bold">Melati</p></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/MANGGA.webp" alt="TaBurMas untuk Mangga" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Mangga</h3></div>
+
+      <!-- 9. SABANG MERAUKE - UKURAN 2x1 -->
+      <div class="col-span-2 group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="/SABANG%20MERAUKE%20KALEM.jpeg" alt="Sabang Merauke" class="w-full h-full object-cover aspect-[2/1] group-hover:scale-110 transition-transform duration-500" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-2"><p class="text-white text-xs md:text-sm font-bold">Sabang-Merauke</p></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/HIAS.webp" alt="TaBurMas untuk Tanaman Hias" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Tanaman Hias</h3></div>
-      </div>
-      <div class="sm:col-span-2 group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/SABANG%20MERAUKE%20KALEM.jpeg" alt="TaBurMas dari Sabang sampai Merauke" class="w-full h-full object-cover aspect-[16/9] group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4 md:p-6">
-          <h3 class="text-white text-xl md:text-3xl font-bold mb-1">Dari Sabang sampai Merauke</h3>
-          <p class="text-green-200 text-sm md:text-base">13 Bacteri untuk seluruh petani Indonesia</p>
-        </div>
-      </div>
-    </div><!-- ===== PASTE DARI SINI, DI ATAS </body> ===== -->
-<section id="galeri-taburmas" class="w-full py-12 md:py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10 md:mb-16">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-green-900 mb-4">
-        TaBurMas Untuk Semua Komoditas Indonesia
-      </h2>
-      <p class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
-        13 Bacteri pilihan bekerja di sawah, kebun, ladang — dari Sabang sampai Merauke
-      </p>
+
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-      <div class="sm:col-span-2 lg:col-span-2 group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/MENYAPA%20TANAMAN%20PADI.webp" alt="Tim TaBurMas di Sawah Tersono" class="w-full h-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4 md:p-6">
-          <h3 class="text-white text-xl md:text-2xl font-bold mb-1">Tim TaBurMas Tersono</h3>
-          <p class="text-green-200 text-sm md:text-base">Langsung dari kebun untuk petani Indonesia</p>
-        </div>
-      </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/PEPAYA.webp" alt="TaBurMas untuk Pepaya" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Pepaya</h3></div>
-      </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/TANAMAN%20CABE.webp" alt="TaBurMas untuk Cabai" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Cabai</h3></div>
-      </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/TANAMAN%20JAGUNG.webp" alt="TaBurMas untuk Jagung" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Jagung</h3></div>
-      </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/PISANG.webp" alt="TaBurMas untuk Pisang" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Pisang</h3></div>
-      </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/MENTIMUN.webp" alt="TaBurMas untuk Mentimun" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Mentimun</h3></div>
-      </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/TEBU.webp" alt="TaBurMas untuk Tebu" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Tebu</h3></div>
-      </div>
-      <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/MELATI.webp" alt="TaBurMas untuk Melati" class="w-full h-full object-cover aspect-square group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white text-lg md:text-xl font-bold">Melati</h3></div>
-      </div>
-      <div class="sm:col-span-2 group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <img src="/SABANG%20MERAUKE%20KALEM.jpeg" alt="TaBurMas dari Sabang sampai Merauke" class="w-full h-full object-cover aspect-[16/9] group-hover:scale-105 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4 md:p-6">
-          <h3 class="text-white text-xl md:text-3xl font-bold mb-1">Dari Sabang sampai Merauke</h3>
-          <p class="text-green-200 text-sm md:text-base">13 Bacteri untuk seluruh petani Indonesia</p>
-        </div>
-      </div>
-    </div>
-    <div class="text-center mt-12 md:mt-16">
-      <a href="https://wa.me/6281393316862?text=Halo+TaBurMas,+saya+mau+konsultasi+tanaman" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg md:text-xl">
+
+    <div class="text-center mt-8 md:mt-12">
+      <a href="https://wa.me/6281393316862?text=Halo+TaBurMas,+saya+mau+konsultasi+tanaman" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base">
         Konsultasi Gratis via WhatsApp 💚
       </a>
     </div>
   </div>
 </section>
 <!-- ===== SAMPE SINI ===== -->
-    <div class="text-center mt-12 md:mt-16">
-      <a href="https://wa.me/628xxx?text=Halo+TaBurMas,+saya+mau+konsultasi+tanaman" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg md:text-xl">
-        Konsultasi Gratis via WhatsApp 💚
-      </a>
-    </div>
-  </div>
-</section>
-<!-- ===== SAMPE SINI ===== -->
-</body>
-</html>
