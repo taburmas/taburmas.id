@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TaBurMas - Galeri</title>
-  <!-- Font Awesome (opsional) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaBurMas - Galeri Komoditas</title>
+  <meta name="description" content="TaBurMas untuk semua komoditas Indonesia. 13 bakteri pilihan dari Sabang sampai Merauke." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
-    /* Reset dasar */
-    * {
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -16,89 +28,166 @@
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: #f9fafb;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.6;
     }
 
-    /* ===== SECTION GALERI ===== */
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ============================================================
+       SECTION GALERI
+    ============================================================ */
     #galeri-taburmas {
       width: 100%;
-      padding: 2rem 0 3rem;
-      background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+      padding: 4rem 0 5rem;
+      background: linear-gradient(180deg, #ffffff 0%, #f0fdf6 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative background element */
+    #galeri-taburmas::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    #galeri-taburmas::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(22, 163, 74, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
     }
 
     .container-galeri {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
     }
 
-    /* HEADER */
+    /* ============================================================
+       HEADER
+    ============================================================ */
     .header-galeri {
       text-align: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .header-galeri .badge {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 0.75rem;
+      border: 1px solid #bbf7d0;
     }
 
     .header-galeri h2 {
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: 800;
       color: #064e3b;
-      letter-spacing: -0.025em;
-      margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .header-galeri h2 span {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .header-galeri p {
-      font-size: 0.95rem;
-      color: #4b5563;
-      max-width: 600px;
+      font-size: 1rem;
+      color: #475569;
+      max-width: 560px;
       margin: 0 auto;
+      font-weight: 400;
     }
 
-    /* === GRID === */
+    .header-galeri .divider {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #16a34a, #86efac);
+      border-radius: 4px;
+      margin: 1rem auto 0;
+    }
+
+    /* ============================================================
+       GRID GALERI
+    ============================================================ */
     .grid-galeri {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
 
-    /* item dasar */
+    /* --- Item Card --- */
     .item-galeri {
       position: relative;
       overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      background: #fff;
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
-      aspect-ratio: 1 / 1; /* semua kotak persegi kecuali yang di-override */
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.4s ease;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     .item-galeri:hover {
-      transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
-      z-index: 5;
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 24px 40px -12px rgba(0, 0, 0, 0.18);
+      z-index: 10;
     }
 
     .item-galeri img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      background: #e2e8f0;
     }
 
     .item-galeri:hover img {
       transform: scale(1.08);
     }
 
-    /* overlay gelap + label */
+    /* --- Overlay --- */
     .overlay-galeri {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 60%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 75%);
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
       display: flex;
       align-items: flex-end;
-      padding: 1rem 1.2rem;
+      padding: 1.2rem 1.2rem 1.4rem;
     }
 
     .item-galeri:hover .overlay-galeri {
@@ -106,89 +195,136 @@
     }
 
     .label-galeri {
-      color: white;
+      color: #ffffff;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       letter-spacing: 0.02em;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      transform: translateY(6px);
-      transition: transform 0.3s ease;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      transform: translateY(10px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .label-galeri .icon-tag {
+      font-size: 0.7rem;
+      opacity: 0.7;
     }
 
     .item-galeri:hover .label-galeri {
       transform: translateY(0);
     }
 
-    /* ---- SPESIAL: ukuran & posisi ---- */
-    /* item 1: besar (2x2) */
+    /* --- Special: Large Item (2x2) --- */
     .item-besar {
       grid-column: span 2;
       grid-row: span 2;
-      aspect-ratio: 1 / 1; /* tetap proporsional */
+      aspect-ratio: 1 / 1;
     }
 
-    /* item 9: lebar 2 kolom, tinggi 1 (aspect ratio 2/1) */
+    .item-besar .label-galeri {
+      font-size: 1.2rem;
+    }
+
+    /* --- Special: Wide Item (2 columns, 1 row) --- */
     .item-lebar {
       grid-column: span 2;
       aspect-ratio: 2 / 1;
     }
 
-    /* tambahan: label lebih besar di item besar */
-    .item-besar .label-galeri {
-      font-size: 1.1rem;
+    .item-lebar .label-galeri {
+      font-size: 1rem;
     }
 
-    /* default label kecil untuk item biasa */
+    /* --- Default small label --- */
     .item-galeri:not(.item-besar):not(.item-lebar) .label-galeri {
       font-size: 0.8rem;
     }
 
-    /* === TOMBOL CTA === */
+    /* --- Subtle shine effect on hover --- */
+    .item-galeri::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+      transform: skewX(-25deg);
+      transition: left 0.7s ease;
+      pointer-events: none;
+    }
+
+    .item-galeri:hover::after {
+      left: 150%;
+    }
+
+    /* ============================================================
+       TOMBOL CTA
+    ============================================================ */
     .cta-galeri {
       text-align: center;
-      margin-top: 3rem;
+      margin-top: 3.5rem;
     }
 
     .btn-wa {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      background: #16a34a;
-      color: white;
+      gap: 0.75rem;
+      background: #25d366;
+      color: #ffffff;
       font-weight: 700;
-      padding: 0.9rem 2.5rem;
-      border-radius: 60px;
       font-size: 1rem;
-      box-shadow: 0 8px 20px -6px rgba(22, 163, 74, 0.35);
-      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.3s ease;
+      padding: 0.9rem 2.8rem;
+      border-radius: 60px;
       text-decoration: none;
       border: none;
       cursor: pointer;
+      box-shadow: 0 8px 28px -8px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      letter-spacing: 0.01em;
     }
 
     .btn-wa i {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     .btn-wa:hover {
-      background: #15803d;
-      transform: scale(1.02);
-      box-shadow: 0 12px 28px -8px rgba(22, 163, 74, 0.5);
+      background: #1da851;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 36px -10px rgba(37, 211, 102, 0.5);
     }
 
-    /* === RESPONSIVE === */
+    .btn-wa:active {
+      transform: scale(0.97);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+
+    /* Tablet landscape & smaller desktops */
     @media (max-width: 1024px) {
       .grid-galeri {
-        gap: 8px;
+        gap: 10px;
+      }
+      .header-galeri h2 {
+        font-size: 2rem;
       }
     }
 
+    /* Tablet portrait */
     @media (max-width: 768px) {
+      #galeri-taburmas {
+        padding: 3rem 0 4rem;
+      }
+
       .header-galeri h2 {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
       }
       .header-galeri p {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
       }
 
       .grid-galeri {
@@ -196,33 +332,48 @@
         gap: 8px;
       }
 
-      /* item besar jadi 2 kolom, 2 baris */
       .item-besar {
         grid-column: span 2;
         grid-row: span 2;
       }
 
-      /* item lebar tetap span 2 */
       .item-lebar {
         grid-column: span 2;
         aspect-ratio: 2 / 1;
+      }
+
+      .item-besar .label-galeri {
+        font-size: 1rem;
       }
 
       .item-galeri:not(.item-besar):not(.item-lebar) .label-galeri {
         font-size: 0.7rem;
       }
 
-      .item-besar .label-galeri {
-        font-size: 0.9rem;
-      }
-
       .btn-wa {
-        padding: 0.8rem 2rem;
+        padding: 0.8rem 2.2rem;
         font-size: 0.9rem;
       }
     }
 
+    /* Mobile */
     @media (max-width: 480px) {
+      #galeri-taburmas {
+        padding: 2rem 0 3rem;
+      }
+
+      .header-galeri .badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.8rem;
+      }
+
+      .header-galeri h2 {
+        font-size: 1.4rem;
+      }
+      .header-galeri p {
+        font-size: 0.8rem;
+      }
+
       .grid-galeri {
         grid-template-columns: repeat(3, 1fr);
         gap: 6px;
@@ -238,138 +389,150 @@
         aspect-ratio: 2 / 1;
       }
 
-      .header-galeri h2 {
-        font-size: 1.3rem;
+      .item-besar .label-galeri {
+        font-size: 0.85rem;
       }
 
-      .label-galeri {
-        font-size: 0.65rem !important;
+      .item-galeri:not(.item-besar):not(.item-lebar) .label-galeri {
+        font-size: 0.6rem;
+      }
+
+      .overlay-galeri {
+        padding: 0.8rem 0.8rem 1rem;
       }
 
       .btn-wa {
-        padding: 0.7rem 1.6rem;
+        padding: 0.65rem 1.6rem;
         font-size: 0.8rem;
+        gap: 0.5rem;
+      }
+      .btn-wa i {
+        font-size: 1rem;
       }
     }
 
-    /* efek tambahan: border halus */
-    .item-galeri {
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    /* Teks kecil untuk label default */
-    .label-galeri small {
-      font-weight: 400;
-      opacity: 0.8;
-      font-size: 0.7em;
-      display: block;
-      margin-top: 2px;
-    }
-
-    /* memastikan gambar tidak pecah */
-    .item-galeri img {
-      background: #e5e7eb;
+    /* Small mobile */
+    @media (max-width: 380px) {
+      .grid-galeri {
+        gap: 4px;
+      }
+      .header-galeri h2 {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
+
 <body>
+  <!-- ============================================================
+  GALERI TABURMAS
+  ============================================================ -->
+  <section id="galeri-taburmas">
+    <div class="container-galeri">
 
-<!-- ===== GALERI FINAL: KECIL RAPAT ===== -->
-<section id="galeri-taburmas">
-  <div class="container-galeri">
-    
-    <!-- HEADER -->
-    <div class="header-galeri">
-      <h2>TaBurMas Untuk Semua Komoditas Indonesia</h2>
-      <p>13 Bacteri pilihan bekerja di sawah, kebun, ladang — dari Sabang sampai Merauke</p>
+      <!-- HEADER -->
+      <div class="header-galeri">
+        <span class="badge"><i class="fas fa-seedling" style="margin-right:6px;"></i>13 Bakteri Pilihan</span>
+        <h2>
+          TaBurMas Untuk <span>Semua Komoditas</span> Indonesia
+        </h2>
+        <p>
+          Dari Sabang sampai Merauke — 13 bakteri unggul bekerja di sawah, kebun, dan ladang.
+        </p>
+        <div class="divider"></div>
+      </div>
+
+      <!-- GRID GALERI -->
+      <div class="grid-galeri">
+
+        <!-- 1. Tim (besar) -->
+        <div class="item-galeri item-besar">
+          <img src="/MENYAPA%20TANAMAN%20PADI.webp" alt="Tim TaBurMas menyapa tanaman padi" loading="lazy" />
+          <div class="overlay-galeri">
+            <span class="label-galeri">
+              <i class="fas fa-users icon-tag"></i> Tim TaBurMas
+            </span>
+          </div>
+        </div>
+
+        <!-- 2. Pepaya -->
+        <div class="item-galeri">
+          <img src="/PEPAYA.webp" alt="Tanaman Pepaya" loading="lazy" />
+          <div class="overlay-galeri">
+            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Pepaya</span>
+          </div>
+        </div>
+
+        <!-- 3. Cabai -->
+        <div class="item-galeri">
+          <img src="/TANAMAN%20CABE.webp" alt="Tanaman Cabai" loading="lazy" />
+          <div class="overlay-galeri">
+            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Cabai</span>
+          </div>
+        </div>
+
+        <!-- 4. Jagung -->
+        <div class="item-galeri">
+          <img src="/TANAMAN%20JAGUNG.webp" alt="Tanaman Jagung" loading="lazy" />
+          <div class="overlay-galeri">
+            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Jagung</span>
+          </div>
+        </div>
+
+        <!-- 5. Pisang -->
+        <div class="item-galeri">
+          <img src="/PISANG.webp" alt="Tanaman Pisang" loading="lazy" />
+          <div class="overlay-galeri">
+            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Pisang</span>
+          </div>
+        </div>
+
+        <!-- 6. Mentimun -->
+        <div class="item-galeri">
+          <img src="/MENTIMUN.webp" alt="Tanaman Mentimun" loading="lazy" />
+          <div class="overlay-galeri">
+            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Mentimun</span>
+          </div>
+        </div>
+
+        <!-- 7. Tebu -->
+        <div class="item-galeri">
+          <img src="/TEBU.webp" alt="Tanaman Tebu" loading="lazy" />
+          <div class="overlay-galeri">
+            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Tebu</span>
+          </div>
+        </div>
+
+        <!-- 8. Melati -->
+        <div class="item-galeri">
+          <img src="/MELATI.webp" alt="Bunga Melati" loading="lazy" />
+          <div class="overlay-galeri">
+            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Melati</span>
+          </div>
+        </div>
+
+        <!-- 9. Sabang-Merauke (lebar) -->
+        <div class="item-galeri item-lebar">
+          <img src="/SABANG%20MERAUKE%20KALEM.jpeg" alt="Sabang sampai Merauke" loading="lazy" />
+          <div class="overlay-galeri">
+            <span class="label-galeri">
+              <i class="fas fa-map-pin icon-tag"></i> Sabang – Merauke
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <!-- end grid -->
+
+      <!-- CTA -->
+      <div class="cta-galeri">
+        <a href="https://wa.me/6281393316862?text=Halo%20TaBurMas%2C%20saya%20mau%20konsultasi%20tanaman" class="btn-wa">
+          <i class="fab fa-whatsapp"></i> Konsultasi Gratis via WhatsApp
+        </a>
+      </div>
+
     </div>
-
-    <!-- GRID -->
-    <div class="grid-galeri">
-
-      <!-- 1. Tim (besar) -->
-      <div class="item-galeri item-besar">
-        <img src="/MENYAPA%20TANAMAN%20PADI.webp" alt="Tim TaBurMas Tersono" loading="lazy">
-        <div class="overlay-galeri">
-          <span class="label-galeri">Tim TaBurMas</span>
-        </div>
-      </div>
-
-      <!-- 2. Pepaya -->
-      <div class="item-galeri">
-        <img src="/PEPAYA.webp" alt="Pepaya" loading="lazy">
-        <div class="overlay-galeri">
-          <span class="label-galeri">Pepaya</span>
-        </div>
-      </div>
-
-      <!-- 3. Cabai -->
-      <div class="item-galeri">
-        <img src="/TANAMAN%20CABE.webp" alt="Cabai" loading="lazy">
-        <div class="overlay-galeri">
-          <span class="label-galeri">Cabai</span>
-        </div>
-      </div>
-
-      <!-- 4. Jagung -->
-      <div class="item-galeri">
-        <img src="/TANAMAN%20JAGUNG.webp" alt="Jagung" loading="lazy">
-        <div class="overlay-galeri">
-          <span class="label-galeri">Jagung</span>
-        </div>
-      </div>
-
-      <!-- 5. Pisang -->
-      <div class="item-galeri">
-        <img src="/PISANG.webp" alt="Pisang" loading="lazy">
-        <div class="overlay-galeri">
-          <span class="label-galeri">Pisang</span>
-        </div>
-      </div>
-
-      <!-- 6. Mentimun -->
-      <div class="item-galeri">
-        <img src="/MENTIMUN.webp" alt="Mentimun" loading="lazy">
-        <div class="overlay-galeri">
-          <span class="label-galeri">Mentimun</span>
-        </div>
-      </div>
-
-      <!-- 7. Tebu -->
-      <div class="item-galeri">
-        <img src="/TEBU.webp" alt="Tebu" loading="lazy">
-        <div class="overlay-galeri">
-          <span class="label-galeri">Tebu</span>
-        </div>
-      </div>
-
-      <!-- 8. Melati -->
-      <div class="item-galeri">
-        <img src="/MELATI.webp" alt="Melati" loading="lazy">
-        <div class="overlay-galeri">
-          <span class="label-galeri">Melati</span>
-        </div>
-      </div>
-
-      <!-- 9. Sabang-Merauke (lebar) -->
-      <div class="item-galeri item-lebar">
-        <img src="/SABANG%20MERAUKE%20KALEM.jpeg" alt="Sabang Merauke" loading="lazy">
-        <div class="overlay-galeri">
-          <span class="label-galeri">Sabang–Merauke</span>
-        </div>
-      </div>
-
-    </div> <!-- end grid -->
-
-    <!-- CTA -->
-    <div class="cta-galeri">
-      <a href="https://wa.me/6281393316862?text=Halo+TaBurMas,+saya+mau+konsultasi+tanaman" class="btn-wa">
-        <i class="fab fa-whatsapp"></i> Konsultasi Gratis via WhatsApp
-      </a>
-    </div>
-
-  </div> <!-- end container -->
-</section>
-
+    <!-- end container -->
+  </section>
 </body>
 </html>
