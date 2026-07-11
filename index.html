@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -28,9 +28,10 @@
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: #f8fafc;
+      background: #f0fdf4;
       color: #0f172a;
       line-height: 1.6;
+      min-height: 100vh;
     }
 
     img {
@@ -40,43 +41,121 @@
     }
 
     /* ============================================================
-       SECTION GALERI
+       SECTION GALERI - LIST VERTICAL
     ============================================================ */
     #galeri-taburmas {
       width: 100%;
+      min-height: 100vh;
       padding: 4rem 0 5rem;
-      background: linear-gradient(180deg, #ffffff 0%, #f0fdf6 100%);
+      background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 30%, #f0fdf4 70%, #dcfce7 100%);
       position: relative;
       overflow: hidden;
     }
 
-    /* Decorative background element */
-    #galeri-taburmas::before {
-      content: '';
+    /* === DECORATIVE ELEMENTS === */
+    /* Floating circles */
+    #galeri-taburmas .deco-circle {
       position: absolute;
-      top: -40%;
-      right: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
       border-radius: 50%;
+      opacity: 0.15;
       pointer-events: none;
+      z-index: 0;
     }
 
-    #galeri-taburmas::after {
-      content: '';
-      position: absolute;
-      bottom: -30%;
-      left: -10%;
+    .deco-circle-1 {
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(22, 163, 74, 0.06) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
+      top: -100px;
+      right: -100px;
+      background: radial-gradient(circle, #16a34a, transparent 70%);
+      animation: floatCircle 20s ease-in-out infinite;
     }
 
+    .deco-circle-2 {
+      width: 300px;
+      height: 300px;
+      bottom: -50px;
+      left: -80px;
+      background: radial-gradient(circle, #22c55e, transparent 70%);
+      animation: floatCircle 25s ease-in-out infinite reverse;
+    }
+
+    .deco-circle-3 {
+      width: 200px;
+      height: 200px;
+      top: 40%;
+      right: 5%;
+      background: radial-gradient(circle, #86efac, transparent 70%);
+      animation: floatCircle 18s ease-in-out infinite 3s;
+    }
+
+    @keyframes floatCircle {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+      33% {
+        transform: translate(30px, -30px) scale(1.05);
+      }
+      66% {
+        transform: translate(-20px, 20px) scale(0.95);
+      }
+    }
+
+    /* Decorative dots pattern */
+    .deco-dots {
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      width: 120px;
+      height: 120px;
+      background-image: radial-gradient(#16a34a 2px, transparent 2px);
+      background-size: 20px 20px;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .deco-dots-2 {
+      top: auto;
+      bottom: 15%;
+      right: 5%;
+      left: auto;
+      width: 80px;
+      height: 80px;
+      background-size: 16px 16px;
+      opacity: 0.06;
+    }
+
+    /* Leaf decoration */
+    .deco-leaf {
+      position: absolute;
+      font-size: 4rem;
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+      color: #16a34a;
+    }
+
+    .deco-leaf-1 {
+      top: 8%;
+      right: 12%;
+      transform: rotate(25deg);
+      font-size: 5rem;
+    }
+
+    .deco-leaf-2 {
+      bottom: 12%;
+      left: 8%;
+      transform: rotate(-15deg) scaleX(-1);
+      font-size: 4.5rem;
+    }
+
+    /* ============================================================
+       CONTAINER
+    ============================================================ */
     .container-galeri {
-      max-width: 1240px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 0 1.5rem;
       position: relative;
@@ -88,176 +167,340 @@
     ============================================================ */
     .header-galeri {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
+      position: relative;
     }
 
     .header-galeri .badge {
-      display: inline-block;
-      background: #dcfce7;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(22, 163, 74, 0.12);
       color: #166534;
       font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.25rem 1rem;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 1.2rem;
       border-radius: 50px;
-      margin-bottom: 0.75rem;
-      border: 1px solid #bbf7d0;
+      border: 1px solid rgba(22, 163, 74, 0.2);
+      backdrop-filter: blur(4px);
+      margin-bottom: 1rem;
+    }
+
+    .header-galeri .badge i {
+      font-size: 0.8rem;
     }
 
     .header-galeri h2 {
-      font-size: 2.4rem;
-      font-weight: 800;
+      font-size: 2.6rem;
+      font-weight: 900;
       color: #064e3b;
       letter-spacing: -0.03em;
-      line-height: 1.15;
+      line-height: 1.12;
       margin-bottom: 0.75rem;
     }
 
-    .header-galeri h2 span {
-      background: linear-gradient(135deg, #16a34a, #15803d);
+    .header-galeri h2 .highlight {
+      background: linear-gradient(135deg, #16a34a, #15803d, #0b5e2e);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      position: relative;
+    }
+
+    .header-galeri h2 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #86efac, #16a34a, #86efac);
+      border-radius: 4px;
+      opacity: 0.3;
+      -webkit-text-fill-color: transparent;
     }
 
     .header-galeri p {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: #475569;
-      max-width: 560px;
+      max-width: 520px;
       margin: 0 auto;
       font-weight: 400;
+      line-height: 1.7;
     }
 
     .header-galeri .divider {
-      width: 60px;
+      width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, #16a34a, #86efac);
+      background: linear-gradient(90deg, transparent, #16a34a, #86efac, transparent);
       border-radius: 4px;
-      margin: 1rem auto 0;
+      margin: 1.2rem auto 0;
     }
 
     /* ============================================================
-       GRID GALERI
+       LIST GALERI - VERTICAL
     ============================================================ */
-    .grid-galeri {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 12px;
+    .list-galeri {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
 
     /* --- Item Card --- */
     .item-galeri {
-      position: relative;
-      overflow: hidden;
-      border-radius: 18px;
+      display: flex;
+      align-items: stretch;
       background: #ffffff;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  box-shadow 0.4s ease;
-      aspect-ratio: 1 / 1;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(4px);
+      position: relative;
     }
 
     .item-galeri:hover {
-      transform: translateY(-6px) scale(1.01);
-      box-shadow: 0 24px 40px -12px rgba(0, 0, 0, 0.18);
-      z-index: 10;
+      transform: translateY(-4px) scale(1.005);
+      box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.15);
+      border-color: rgba(22, 163, 74, 0.15);
     }
 
-    .item-galeri img {
+    /* --- Image Container --- */
+    .item-galeri .image-wrap {
+      flex: 0 0 280px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      background: #e2e8f0;
+    }
+
+    .item-galeri .image-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      background: #e2e8f0;
     }
 
-    .item-galeri:hover img {
-      transform: scale(1.08);
+    .item-galeri:hover .image-wrap img {
+      transform: scale(1.06);
     }
 
-    /* --- Overlay --- */
-    .overlay-galeri {
+    /* Image badge overlay */
+    .item-galeri .image-badge {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 75%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      display: flex;
-      align-items: flex-end;
-      padding: 1.2rem 1.2rem 1.4rem;
-    }
-
-    .item-galeri:hover .overlay-galeri {
-      opacity: 1;
-    }
-
-    .label-galeri {
-      color: #ffffff;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 0.6rem;
       font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-      transform: translateY(10px);
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* --- Content --- */
+    .item-galeri .content-wrap {
+      flex: 1;
+      padding: 1.5rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffffff 0%, #fafffe 100%);
+    }
+
+    .item-galeri .content-wrap .number {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #16a34a;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .item-galeri .content-wrap h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #064e3b;
+      margin-bottom: 0.4rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .label-galeri .icon-tag {
-      font-size: 0.7rem;
+    .item-galeri .content-wrap h3 i {
+      color: #16a34a;
+      font-size: 0.9rem;
       opacity: 0.7;
     }
 
-    .item-galeri:hover .label-galeri {
-      transform: translateY(0);
+    .item-galeri .content-wrap p {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.6;
+      max-width: 400px;
     }
 
-    /* --- Special: Large Item (2x2) --- */
-    .item-besar {
-      grid-column: span 2;
-      grid-row: span 2;
-      aspect-ratio: 1 / 1;
+    .item-galeri .content-wrap .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.6rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #166534;
+      background: rgba(22, 163, 74, 0.08);
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      width: fit-content;
+      border: 1px solid rgba(22, 163, 74, 0.1);
     }
 
-    .item-besar .label-galeri {
-      font-size: 1.2rem;
+    /* --- Special: Large Item (Tim) --- */
+    .item-galeri.item-besar .image-wrap {
+      flex: 0 0 320px;
+      height: 240px;
     }
 
-    /* --- Special: Wide Item (2 columns, 1 row) --- */
-    .item-lebar {
-      grid-column: span 2;
-      aspect-ratio: 2 / 1;
+    .item-galeri.item-besar .content-wrap h3 {
+      font-size: 1.6rem;
     }
 
-    .item-lebar .label-galeri {
-      font-size: 1rem;
+    /* --- Special: Wide Item (Sabang-Merauke) --- */
+    .item-galeri.item-lebar .image-wrap {
+      flex: 0 0 360px;
+      height: 200px;
     }
 
-    /* --- Default small label --- */
-    .item-galeri:not(.item-besar):not(.item-lebar) .label-galeri {
-      font-size: 0.8rem;
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+
+    /* Tablet */
+    @media (max-width: 768px) {
+      #galeri-taburmas {
+        padding: 3rem 0 4rem;
+      }
+
+      .header-galeri h2 {
+        font-size: 2rem;
+      }
+      .header-galeri p {
+        font-size: 0.9rem;
+      }
+
+      .item-galeri {
+        flex-direction: column;
+        border-radius: 16px;
+      }
+
+      .item-galeri .image-wrap {
+        flex: 0 0 auto;
+        height: 200px;
+        width: 100%;
+      }
+
+      .item-galeri .content-wrap {
+        padding: 1.2rem 1.5rem;
+      }
+
+      .item-galeri.item-besar .image-wrap {
+        flex: 0 0 auto;
+        height: 240px;
+        width: 100%;
+      }
+
+      .item-galeri.item-lebar .image-wrap {
+        flex: 0 0 auto;
+        height: 180px;
+        width: 100%;
+      }
+
+      .deco-circle-1 {
+        width: 200px;
+        height: 200px;
+      }
+      .deco-circle-2 {
+        width: 150px;
+        height: 150px;
+      }
+      .deco-circle-3 {
+        width: 100px;
+        height: 100px;
+      }
+      .deco-leaf {
+        display: none;
+      }
+      .deco-dots {
+        display: none;
+      }
     }
 
-    /* --- Subtle shine effect on hover --- */
-    .item-galeri::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-      transform: skewX(-25deg);
-      transition: left 0.7s ease;
-      pointer-events: none;
-    }
+    /* Mobile */
+    @media (max-width: 480px) {
+      #galeri-taburmas {
+        padding: 2rem 0 3rem;
+      }
 
-    .item-galeri:hover::after {
-      left: 150%;
+      .header-galeri .badge {
+        font-size: 0.6rem;
+        padding: 0.3rem 1rem;
+      }
+
+      .header-galeri h2 {
+        font-size: 1.5rem;
+      }
+      .header-galeri p {
+        font-size: 0.8rem;
+      }
+
+      .list-galeri {
+        gap: 1.2rem;
+      }
+
+      .item-galeri .image-wrap {
+        height: 160px;
+      }
+
+      .item-galeri .content-wrap {
+        padding: 1rem 1.2rem;
+      }
+
+      .item-galeri .content-wrap h3 {
+        font-size: 1rem;
+      }
+
+      .item-galeri .content-wrap p {
+        font-size: 0.8rem;
+      }
+
+      .item-galeri.item-besar .image-wrap {
+        height: 180px;
+      }
+      .item-galeri.item-besar .content-wrap h3 {
+        font-size: 1.2rem;
+      }
+
+      .item-galeri.item-lebar .image-wrap {
+        height: 140px;
+      }
+
+      .deco-circle-1,
+      .deco-circle-2,
+      .deco-circle-3 {
+        display: none;
+      }
+
+      .btn-wa {
+        padding: 0.7rem 1.8rem;
+        font-size: 0.85rem;
+      }
     }
 
     /* ============================================================
@@ -272,169 +515,96 @@
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      background: #25d366;
+      background: linear-gradient(135deg, #25d366, #1da851);
       color: #ffffff;
       font-weight: 700;
       font-size: 1rem;
-      padding: 0.9rem 2.8rem;
+      padding: 1rem 3rem;
       border-radius: 60px;
       text-decoration: none;
       border: none;
       cursor: pointer;
-      box-shadow: 0 8px 28px -8px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 8px 32px -8px rgba(37, 211, 102, 0.4);
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       letter-spacing: 0.01em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-wa::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+      transform: scale(0);
+      transition: transform 0.6s ease;
+    }
+
+    .btn-wa:hover::before {
+      transform: scale(1);
     }
 
     .btn-wa i {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
     }
 
     .btn-wa:hover {
-      background: #1da851;
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 36px -10px rgba(37, 211, 102, 0.5);
+      box-shadow: 0 16px 40px -10px rgba(37, 211, 102, 0.5);
     }
 
     .btn-wa:active {
       transform: scale(0.97);
     }
 
-    /* ============================================================
-       RESPONSIVE
-    ============================================================ */
-
-    /* Tablet landscape & smaller desktops */
-    @media (max-width: 1024px) {
-      .grid-galeri {
-        gap: 10px;
+    /* Pulse animation untuk CTA */
+    @keyframes pulse-cta {
+      0%,
+      100% {
+        box-shadow: 0 8px 32px -8px rgba(37, 211, 102, 0.4);
       }
-      .header-galeri h2 {
-        font-size: 2rem;
+      50% {
+        box-shadow: 0 8px 48px -6px rgba(37, 211, 102, 0.6);
       }
     }
 
-    /* Tablet portrait */
-    @media (max-width: 768px) {
-      #galeri-taburmas {
-        padding: 3rem 0 4rem;
-      }
-
-      .header-galeri h2 {
-        font-size: 1.7rem;
-      }
-      .header-galeri p {
-        font-size: 0.9rem;
-      }
-
-      .grid-galeri {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-      }
-
-      .item-besar {
-        grid-column: span 2;
-        grid-row: span 2;
-      }
-
-      .item-lebar {
-        grid-column: span 2;
-        aspect-ratio: 2 / 1;
-      }
-
-      .item-besar .label-galeri {
-        font-size: 1rem;
-      }
-
-      .item-galeri:not(.item-besar):not(.item-lebar) .label-galeri {
-        font-size: 0.7rem;
-      }
-
-      .btn-wa {
-        padding: 0.8rem 2.2rem;
-        font-size: 0.9rem;
-      }
+    .btn-wa {
+      animation: pulse-cta 3s ease-in-out infinite;
     }
 
-    /* Mobile */
-    @media (max-width: 480px) {
-      #galeri-taburmas {
-        padding: 2rem 0 3rem;
-      }
-
-      .header-galeri .badge {
-        font-size: 0.6rem;
-        padding: 0.2rem 0.8rem;
-      }
-
-      .header-galeri h2 {
-        font-size: 1.4rem;
-      }
-      .header-galeri p {
-        font-size: 0.8rem;
-      }
-
-      .grid-galeri {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-      }
-
-      .item-besar {
-        grid-column: span 2;
-        grid-row: span 2;
-      }
-
-      .item-lebar {
-        grid-column: span 2;
-        aspect-ratio: 2 / 1;
-      }
-
-      .item-besar .label-galeri {
-        font-size: 0.85rem;
-      }
-
-      .item-galeri:not(.item-besar):not(.item-lebar) .label-galeri {
-        font-size: 0.6rem;
-      }
-
-      .overlay-galeri {
-        padding: 0.8rem 0.8rem 1rem;
-      }
-
-      .btn-wa {
-        padding: 0.65rem 1.6rem;
-        font-size: 0.8rem;
-        gap: 0.5rem;
-      }
-      .btn-wa i {
-        font-size: 1rem;
-      }
-    }
-
-    /* Small mobile */
-    @media (max-width: 380px) {
-      .grid-galeri {
-        gap: 4px;
-      }
-      .header-galeri h2 {
-        font-size: 1.2rem;
-      }
+    .btn-wa:hover {
+      animation: none;
     }
   </style>
 </head>
 
 <body>
   <!-- ============================================================
-  GALERI TABURMAS
+  GALERI TABURMAS - LIST VERTICAL
   ============================================================ -->
   <section id="galeri-taburmas">
+
+    <!-- DECORATIVE ELEMENTS -->
+    <div class="deco-circle deco-circle-1"></div>
+    <div class="deco-circle deco-circle-2"></div>
+    <div class="deco-circle deco-circle-3"></div>
+    <div class="deco-dots"></div>
+    <div class="deco-dots deco-dots-2"></div>
+    <div class="deco-leaf deco-leaf-1"><i class="fas fa-leaf"></i></div>
+    <div class="deco-leaf deco-leaf-2"><i class="fas fa-seedling"></i></div>
+
     <div class="container-galeri">
 
       <!-- HEADER -->
       <div class="header-galeri">
-        <span class="badge"><i class="fas fa-seedling" style="margin-right:6px;"></i>13 Bakteri Pilihan</span>
+        <span class="badge">
+          <i class="fas fa-flask"></i> 13 Bakteri Pilihan
+        </span>
         <h2>
-          TaBurMas Untuk <span>Semua Komoditas</span> Indonesia
+          TaBurMas Untuk <span class="highlight">Semua Komoditas</span> Indonesia
         </h2>
         <p>
           Dari Sabang sampai Merauke — 13 bakteri unggul bekerja di sawah, kebun, dan ladang.
@@ -442,87 +612,137 @@
         <div class="divider"></div>
       </div>
 
-      <!-- GRID GALERI -->
-      <div class="grid-galeri">
+      <!-- LIST GALERI (VERTICAL) -->
+      <div class="list-galeri">
 
         <!-- 1. Tim (besar) -->
         <div class="item-galeri item-besar">
-          <img src="/MENYAPA%20TANAMAN%20PADI.webp" alt="Tim TaBurMas menyapa tanaman padi" loading="lazy" />
-          <div class="overlay-galeri">
-            <span class="label-galeri">
-              <i class="fas fa-users icon-tag"></i> Tim TaBurMas
-            </span>
+          <div class="image-wrap">
+            <img src="/MENYAPA%20TANAMAN%20PADI.webp" alt="Tim TaBurMas menyapa tanaman padi" loading="lazy" />
+            <span class="image-badge"><i class="fas fa-users"></i> Team</span>
+          </div>
+          <div class="content-wrap">
+            <span class="number">#1</span>
+            <h3><i class="fas fa-users"></i> Tim TaBurMas</h3>
+            <p>Para ahli mikrobiologi dan agrikultur yang siap membantu kesuburan tanah Anda.</p>
+            <span class="tag"><i class="fas fa-check-circle"></i> Bakteri Unggul</span>
           </div>
         </div>
 
         <!-- 2. Pepaya -->
         <div class="item-galeri">
-          <img src="/PEPAYA.webp" alt="Tanaman Pepaya" loading="lazy" />
-          <div class="overlay-galeri">
-            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Pepaya</span>
+          <div class="image-wrap">
+            <img src="/PEPAYA.webp" alt="Tanaman Pepaya" loading="lazy" />
+            <span class="image-badge"><i class="fas fa-seedling"></i> Buah</span>
+          </div>
+          <div class="content-wrap">
+            <span class="number">#2</span>
+            <h3><i class="fas fa-seedling"></i> Pepaya</h3>
+            <p>Bakteri TaBurMas membantu pertumbuhan pepaya lebih cepat dan buah lebih manis.</p>
+            <span class="tag"><i class="fas fa-flask"></i> 3 Bakteri</span>
           </div>
         </div>
 
         <!-- 3. Cabai -->
         <div class="item-galeri">
-          <img src="/TANAMAN%20CABE.webp" alt="Tanaman Cabai" loading="lazy" />
-          <div class="overlay-galeri">
-            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Cabai</span>
+          <div class="image-wrap">
+            <img src="/TANAMAN%20CABE.webp" alt="Tanaman Cabai" loading="lazy" />
+            <span class="image-badge"><i class="fas fa-seedling"></i> Sayur</span>
+          </div>
+          <div class="content-wrap">
+            <span class="number">#3</span>
+            <h3><i class="fas fa-seedling"></i> Cabai</h3>
+            <p>Produksi cabai meningkat hingga 40% dengan aplikasi bakteri TaBurMas.</p>
+            <span class="tag"><i class="fas fa-flask"></i> 4 Bakteri</span>
           </div>
         </div>
 
         <!-- 4. Jagung -->
         <div class="item-galeri">
-          <img src="/TANAMAN%20JAGUNG.webp" alt="Tanaman Jagung" loading="lazy" />
-          <div class="overlay-galeri">
-            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Jagung</span>
+          <div class="image-wrap">
+            <img src="/TANAMAN%20JAGUNG.webp" alt="Tanaman Jagung" loading="lazy" />
+            <span class="image-badge"><i class="fas fa-seedling"></i> Pangan</span>
+          </div>
+          <div class="content-wrap">
+            <span class="number">#4</span>
+            <h3><i class="fas fa-seedling"></i> Jagung</h3>
+            <p>Bakteri TaBurMas meningkatkan ketahanan jagung terhadap hama dan penyakit.</p>
+            <span class="tag"><i class="fas fa-flask"></i> 5 Bakteri</span>
           </div>
         </div>
 
         <!-- 5. Pisang -->
         <div class="item-galeri">
-          <img src="/PISANG.webp" alt="Tanaman Pisang" loading="lazy" />
-          <div class="overlay-galeri">
-            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Pisang</span>
+          <div class="image-wrap">
+            <img src="/PISANG.webp" alt="Tanaman Pisang" loading="lazy" />
+            <span class="image-badge"><i class="fas fa-seedling"></i> Buah</span>
+          </div>
+          <div class="content-wrap">
+            <span class="number">#5</span>
+            <h3><i class="fas fa-seedling"></i> Pisang</h3>
+            <p>Bakteri TaBurMas memperkuat akar pisang dan meningkatkan kualitas buah.</p>
+            <span class="tag"><i class="fas fa-flask"></i> 4 Bakteri</span>
           </div>
         </div>
 
         <!-- 6. Mentimun -->
         <div class="item-galeri">
-          <img src="/MENTIMUN.webp" alt="Tanaman Mentimun" loading="lazy" />
-          <div class="overlay-galeri">
-            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Mentimun</span>
+          <div class="image-wrap">
+            <img src="/MENTIMUN.webp" alt="Tanaman Mentimun" loading="lazy" />
+            <span class="image-badge"><i class="fas fa-seedling"></i> Sayur</span>
+          </div>
+          <div class="content-wrap">
+            <span class="number">#6</span>
+            <h3><i class="fas fa-seedling"></i> Mentimun</h3>
+            <p>Hasil panen mentimun lebih melimpah dengan aplikasi bakteri TaBurMas.</p>
+            <span class="tag"><i class="fas fa-flask"></i> 3 Bakteri</span>
           </div>
         </div>
 
         <!-- 7. Tebu -->
         <div class="item-galeri">
-          <img src="/TEBU.webp" alt="Tanaman Tebu" loading="lazy" />
-          <div class="overlay-galeri">
-            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Tebu</span>
+          <div class="image-wrap">
+            <img src="/TEBU.webp" alt="Tanaman Tebu" loading="lazy" />
+            <span class="image-badge"><i class="fas fa-seedling"></i> Perkebunan</span>
+          </div>
+          <div class="content-wrap">
+            <span class="number">#7</span>
+            <h3><i class="fas fa-seedling"></i> Tebu</h3>
+            <p>Bakteri TaBurMas meningkatkan kadar gula dan produktivitas tebu.</p>
+            <span class="tag"><i class="fas fa-flask"></i> 5 Bakteri</span>
           </div>
         </div>
 
         <!-- 8. Melati -->
         <div class="item-galeri">
-          <img src="/MELATI.webp" alt="Bunga Melati" loading="lazy" />
-          <div class="overlay-galeri">
-            <span class="label-galeri"><i class="fas fa-leaf icon-tag"></i> Melati</span>
+          <div class="image-wrap">
+            <img src="/MELATI.webp" alt="Bunga Melati" loading="lazy" />
+            <span class="image-badge"><i class="fas fa-seedling"></i> Flora</span>
+          </div>
+          <div class="content-wrap">
+            <span class="number">#8</span>
+            <h3><i class="fas fa-seedling"></i> Melati</h3>
+            <p>Bakteri TaBurMas membuat bunga melati lebih harum dan tahan lama.</p>
+            <span class="tag"><i class="fas fa-flask"></i> 3 Bakteri</span>
           </div>
         </div>
 
         <!-- 9. Sabang-Merauke (lebar) -->
         <div class="item-galeri item-lebar">
-          <img src="/SABANG%20MERAUKE%20KALEM.jpeg" alt="Sabang sampai Merauke" loading="lazy" />
-          <div class="overlay-galeri">
-            <span class="label-galeri">
-              <i class="fas fa-map-pin icon-tag"></i> Sabang – Merauke
-            </span>
+          <div class="image-wrap">
+            <img src="/SABANG%20MERAUKE%20KALEM.jpeg" alt="Sabang sampai Merauke" loading="lazy" />
+            <span class="image-badge"><i class="fas fa-map-pin"></i> Indonesia</span>
+          </div>
+          <div class="content-wrap">
+            <span class="number">#9</span>
+            <h3><i class="fas fa-map-pin"></i> Sabang – Merauke</h3>
+            <p>TaBurMas hadir untuk semua komoditas di seluruh Indonesia, dari ujung barat sampai timur.</p>
+            <span class="tag"><i class="fas fa-globe-asia"></i> Nusantara</span>
           </div>
         </div>
 
       </div>
-      <!-- end grid -->
+      <!-- end list -->
 
       <!-- CTA -->
       <div class="cta-galeri">
