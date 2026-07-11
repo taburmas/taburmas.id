@@ -1,81 +1,375 @@
-HTML
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaBurMas - Galeri</title>
+  <!-- Font Awesome (opsional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset dasar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f9fafb;
+    }
+
+    /* ===== SECTION GALERI ===== */
+    #galeri-taburmas {
+      width: 100%;
+      padding: 2rem 0 3rem;
+      background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+    }
+
+    .container-galeri {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* HEADER */
+    .header-galeri {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .header-galeri h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #064e3b;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .header-galeri p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* === GRID === */
+    .grid-galeri {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+
+    /* item dasar */
+    .item-galeri {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      background: #fff;
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      aspect-ratio: 1 / 1; /* semua kotak persegi kecuali yang di-override */
+    }
+
+    .item-galeri:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+      z-index: 5;
+    }
+
+    .item-galeri img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .item-galeri:hover img {
+      transform: scale(1.08);
+    }
+
+    /* overlay gelap + label */
+    .overlay-galeri {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem 1.2rem;
+    }
+
+    .item-galeri:hover .overlay-galeri {
+      opacity: 1;
+    }
+
+    .label-galeri {
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transform: translateY(6px);
+      transition: transform 0.3s ease;
+    }
+
+    .item-galeri:hover .label-galeri {
+      transform: translateY(0);
+    }
+
+    /* ---- SPESIAL: ukuran & posisi ---- */
+    /* item 1: besar (2x2) */
+    .item-besar {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: 1 / 1; /* tetap proporsional */
+    }
+
+    /* item 9: lebar 2 kolom, tinggi 1 (aspect ratio 2/1) */
+    .item-lebar {
+      grid-column: span 2;
+      aspect-ratio: 2 / 1;
+    }
+
+    /* tambahan: label lebih besar di item besar */
+    .item-besar .label-galeri {
+      font-size: 1.1rem;
+    }
+
+    /* default label kecil untuk item biasa */
+    .item-galeri:not(.item-besar):not(.item-lebar) .label-galeri {
+      font-size: 0.8rem;
+    }
+
+    /* === TOMBOL CTA === */
+    .cta-galeri {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #16a34a;
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px -6px rgba(22, 163, 74, 0.35);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-wa i {
+      font-size: 1.2rem;
+    }
+
+    .btn-wa:hover {
+      background: #15803d;
+      transform: scale(1.02);
+      box-shadow: 0 12px 28px -8px rgba(22, 163, 74, 0.5);
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .grid-galeri {
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-galeri h2 {
+        font-size: 1.6rem;
+      }
+      .header-galeri p {
+        font-size: 0.85rem;
+      }
+
+      .grid-galeri {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      /* item besar jadi 2 kolom, 2 baris */
+      .item-besar {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      /* item lebar tetap span 2 */
+      .item-lebar {
+        grid-column: span 2;
+        aspect-ratio: 2 / 1;
+      }
+
+      .item-galeri:not(.item-besar):not(.item-lebar) .label-galeri {
+        font-size: 0.7rem;
+      }
+
+      .item-besar .label-galeri {
+        font-size: 0.9rem;
+      }
+
+      .btn-wa {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid-galeri {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      .item-besar {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      .item-lebar {
+        grid-column: span 2;
+        aspect-ratio: 2 / 1;
+      }
+
+      .header-galeri h2 {
+        font-size: 1.3rem;
+      }
+
+      .label-galeri {
+        font-size: 0.65rem !important;
+      }
+
+      .btn-wa {
+        padding: 0.7rem 1.6rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* efek tambahan: border halus */
+    .item-galeri {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* Teks kecil untuk label default */
+    .label-galeri small {
+      font-weight: 400;
+      opacity: 0.8;
+      font-size: 0.7em;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* memastikan gambar tidak pecah */
+    .item-galeri img {
+      background: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
 
 <!-- ===== GALERI FINAL: KECIL RAPAT ===== -->
-<section id="galeri-taburmas" class="w-full py-8 md:py-12 bg-gradient-to-b from-white to-green-50">
-  <div class="max-w-6xl mx-auto px-3 sm:px-6">
-    <div class="text-center mb-6 md:mb-10">
-      <h2 class="text-2xl md:text-4xl font-extrabold text-green-900 mb-2">
-        TaBurMas Untuk Semua Komoditas Indonesia
-      </h2>
-      <p class="text-gray-600 text-sm md:text-base max-w-2xl mx-auto">
-        13 Bacteri pilihan bekerja di sawah, kebun, ladang — dari Sabang sampai Merauke
-      </p>
+<section id="galeri-taburmas">
+  <div class="container-galeri">
+    
+    <!-- HEADER -->
+    <div class="header-galeri">
+      <h2>TaBurMas Untuk Semua Komoditas Indonesia</h2>
+      <p>13 Bacteri pilihan bekerja di sawah, kebun, ladang — dari Sabang sampai Merauke</p>
     </div>
 
-    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-1.5 md:gap-2">
-      
-      <div class="col-span-2 row-span-2 group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="/MENYAPA%20TANAMAN%20PADI.webp" alt="Tim TaBurMas Tersono" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div class="absolute bottom-0 left-0 p-2 md:p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-          <p class="text-white text-xs md:text-sm font-bold">Tim TaBurMas</p>
+    <!-- GRID -->
+    <div class="grid-galeri">
+
+      <!-- 1. Tim (besar) -->
+      <div class="item-galeri item-besar">
+        <img src="/MENYAPA%20TANAMAN%20PADI.webp" alt="Tim TaBurMas Tersono" loading="lazy">
+        <div class="overlay-galeri">
+          <span class="label-galeri">Tim TaBurMas</span>
         </div>
       </div>
 
-      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="/PEPAYA.webp" alt="Pepaya" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text-[10px] md:text-xs font-bold">Pepaya</p></div>
+      <!-- 2. Pepaya -->
+      <div class="item-galeri">
+        <img src="/PEPAYA.webp" alt="Pepaya" loading="lazy">
+        <div class="overlay-galeri">
+          <span class="label-galeri">Pepaya</span>
+        </div>
       </div>
 
-      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="/TANAMAN%20CABE.webp" alt="Cabai" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text-[10px] md:text-xs font-bold">Cabai</p></div>
+      <!-- 3. Cabai -->
+      <div class="item-galeri">
+        <img src="/TANAMAN%20CABE.webp" alt="Cabai" loading="lazy">
+        <div class="overlay-galeri">
+          <span class="label-galeri">Cabai</span>
+        </div>
       </div>
 
-      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="/TANAMAN%20JAGUNG.webp" alt="Jagung" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text-[10px] md:text-xs font-bold">Jagung</p></div>
+      <!-- 4. Jagung -->
+      <div class="item-galeri">
+        <img src="/TANAMAN%20JAGUNG.webp" alt="Jagung" loading="lazy">
+        <div class="overlay-galeri">
+          <span class="label-galeri">Jagung</span>
+        </div>
       </div>
 
-      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="/PISANG.webp" alt="Pisang" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text-[10px] md:text-xs font-bold">Pisang</p></div>
+      <!-- 5. Pisang -->
+      <div class="item-galeri">
+        <img src="/PISANG.webp" alt="Pisang" loading="lazy">
+        <div class="overlay-galeri">
+          <span class="label-galeri">Pisang</span>
+        </div>
       </div>
 
-      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="/MENTIMUN.webp" alt="Mentimun" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text-[10px] md:text-xs font-bold">Mentimun</p></div>
+      <!-- 6. Mentimun -->
+      <div class="item-galeri">
+        <img src="/MENTIMUN.webp" alt="Mentimun" loading="lazy">
+        <div class="overlay-galeri">
+          <span class="label-galeri">Mentimun</span>
+        </div>
       </div>
 
-      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="/TEBU.webp" alt="Tebu" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text-[10px] md:text-xs font-bold">Tebu</p></div>
+      <!-- 7. Tebu -->
+      <div class="item-galeri">
+        <img src="/TEBU.webp" alt="Tebu" loading="lazy">
+        <div class="overlay-galeri">
+          <span class="label-galeri">Tebu</span>
+        </div>
       </div>
 
-      <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="/MELATI.webp" alt="Melati" class="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-1.5"><p class="text-white text-[10px] md:text-xs font-bold">Melati</p></div>
+      <!-- 8. Melati -->
+      <div class="item-galeri">
+        <img src="/MELATI.webp" alt="Melati" loading="lazy">
+        <div class="overlay-galeri">
+          <span class="label-galeri">Melati</span>
+        </div>
       </div>
 
-      <div class="col-span-2 group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="/SABANG%20MERAUKE%20KALEM.jpeg" alt="Sabang Merauke" class="w-full h-full object-cover aspect-[2/1] group-hover:scale-110 transition-transform duration-500" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-2"><p class="text-white text-xs md:text-sm font-bold">Sabang-Merauke</p></div>
+      <!-- 9. Sabang-Merauke (lebar) -->
+      <div class="item-galeri item-lebar">
+        <img src="/SABANG%20MERAUKE%20KALEM.jpeg" alt="Sabang Merauke" loading="lazy">
+        <div class="overlay-galeri">
+          <span class="label-galeri">Sabang–Merauke</span>
+        </div>
       </div>
 
-    </div>
+    </div> <!-- end grid -->
 
-    <div class="text-center mt-8 md:mt-12">
-      <a href="https://wa.me/6281393316862?text=Halo+TaBurMas,+saya+mau+konsultasi+tanaman" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base">
-        Konsultasi Gratis via WhatsApp 💚
+    <!-- CTA -->
+    <div class="cta-galeri">
+      <a href="https://wa.me/6281393316862?text=Halo+TaBurMas,+saya+mau+konsultasi+tanaman" class="btn-wa">
+        <i class="fab fa-whatsapp"></i> Konsultasi Gratis via WhatsApp
       </a>
     </div>
-  </div>
+
+  </div> <!-- end container -->
 </section>
+
+</body>
+</html>
